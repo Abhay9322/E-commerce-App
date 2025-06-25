@@ -14,7 +14,7 @@ function ProductItem({ product }) {
       <h3>{product.name}</h3>
       <p>{product.description}</p>
       <p>₹ {product.price}</p>
-      <button onClick={addToCart}>Add to Cart</button>
+      <button onClick={addToCart}>Add to Cart</button><br />
     </div>
   );
 };
