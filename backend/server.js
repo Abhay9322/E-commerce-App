@@ -1,13 +1,18 @@
-import mongoose from 'mongoose';                // Import mongoose to connect MongoDB
+import express from 'express';
+import cors from 'cors';
+import connectDB from './config/db.js';
+import productRoutes from './routes/productRoutes.js';
 
-const connectDB = async () => {                 // Create async function to connect DB
-  try {
-    const conn = await mongoose.connect('mongodb://127.0.0.1:27017/ecommerceDB'); // Connect to local MongoDB
-    console.log(`MongoDB Connected: ${conn.connection.host}`); // Show success message
-  } catch (error) {
-    console.error(`Error: ${error.message}`);   // Show error message if connection fails
-    process.exit(1);                            // Exit process
-  }
-};
+const app = express();
+connectDB();
 
-export default connectDB;                       // Export this function
+app.use(cors());
+app.use(express.json());
+
+app.use('/api/products',productRoutes);
+
+
+app.listen(5000, () => {
+    console.log('Server running on port 5000');
+    
+});
